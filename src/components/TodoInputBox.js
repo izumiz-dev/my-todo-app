@@ -11,8 +11,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     width: 500,
-    marginTop: 20,
-    margin: `${theme.spacing(1)}px auto`,
+    margin: `${theme.spacing(4)}px auto`,
     padding: theme.spacing(2),
   },
   input: {
@@ -35,6 +34,7 @@ const TodoInputBox = () => {
   return (
     <Paper className={classes.root}>
       <InputBase
+        multiline
         className={classes.input}
         placeholder="Add new Todo"
         inputProps={{ "addTodo": "add" }}

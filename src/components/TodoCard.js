@@ -15,19 +15,22 @@ const useStyles = makeStyles(theme => ({
     width: 500,
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
+  },
+  checkbox: {
+    padding: theme.spacing(0, 2),
   }
 }))
 
-const message = "うわああああああ"
+const message = "TEST"
 
-export default function AutoGridNoWrap() {
+const TodoCard = () => {
   const classes = useStyles()
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container wrap="nowrap" spacing={2}>
           <Checkbox
+            className={classes.checkbox}
             // checked={}
             // onChange={handleChange("checkedA")}
             value="checkedA"
@@ -36,10 +39,12 @@ export default function AutoGridNoWrap() {
             }}
           />
           <Grid item xs>
-            <Typography style={{ textAlign: "left" }}>{message}</Typography>
+            <Typography variant="body1" style={{ textAlign: "left", whiteSpace: "pre-line" }}>{message}</Typography>
           </Grid>
         </Grid>
       </Paper>
     </div>
   )
 }
+
+export default TodoCard
