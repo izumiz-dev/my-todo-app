@@ -36,8 +36,16 @@ module.exports = {
             'double'
         ],
         'semi': [
-            'error',
-            'never'
-        ]
+          'error',
+          'never'
+        ],
+        "max-len": ["error", 80, 2, {
+          ignoreUrls: true,
+        ignoreComments: false,
+        ignoreRegExpLiterals: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+    }],
+        "react/prop-types": 0
     }
 }

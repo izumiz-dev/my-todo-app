@@ -7,23 +7,35 @@ import Checkbox from "@material-ui/core/Checkbox"
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: "flex",
+    alignItems: "center",
+    width: 500,
     flexGrow: 1,
     overflow: "hidden",
-    padding: theme.spacing(0, 3),
+    margin: `${theme.spacing(4)}px auto`,
+    padding: theme.spacing(2),
   },
   paper: {
     width: 500,
-    margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2),
+    margin: theme.spacing(2),
+    padding: theme.spacing(2, 4),
   },
   checkbox: {
-    padding: theme.spacing(0, 2),
+    padding: `${theme.spacing(2)}px auto`,
+    margin: `${theme.spacing(2)}px auto`,
+  },
+  typography: {
+    padding: `${theme.spacing(2)}px auto`,
+    margin: `${theme.spacing(2)}px auto`,
+    // alignContent: "center",
+    // display: "flex",
+    textAlign: "left",
+    whiteSpace: "pre-line"
   }
 }))
 
-const message = "TEST"
 
-const TodoCard = () => {
+const TodoCard = ({onHandleCheck,isChecked,taskString}) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -31,15 +43,15 @@ const TodoCard = () => {
         <Grid container wrap="nowrap" spacing={2}>
           <Checkbox
             className={classes.checkbox}
-            // checked={}
-            // onChange={handleChange("checkedA")}
-            value="checkedA"
-            inputProps={{
-              "aria-label": "primary checkbox",
-            }}
+            checked={isChecked}
+            onChange={onHandleCheck}
           />
           <Grid item xs>
-            <Typography variant="body1" style={{ textAlign: "left", whiteSpace: "pre-line" }}>{message}</Typography>
+            <Typography
+              variant="body1"
+              className={classes.typography}>
+              {taskString}
+            </Typography>
           </Grid>
         </Grid>
       </Paper>
