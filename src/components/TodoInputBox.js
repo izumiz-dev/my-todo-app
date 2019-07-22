@@ -28,19 +28,21 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const TodoInputBox = () => {
+const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
   const classes = useStyles()
-
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root}>        
       <InputBase
-        multiline
+        id="taskInputBox"
+        // multiline
         className={classes.input}
         placeholder="Add new Todo"
-        inputProps={{ "addTodo": "add" }}
+        // inputProps={any => console.log(any)}
+        onChange={onInputChange}
+        value={textInput}
       />
       <Divider className={classes.divider} />
-      <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+      <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={onAddClick}>
         <AddBox />
       </IconButton>
     </Paper>
