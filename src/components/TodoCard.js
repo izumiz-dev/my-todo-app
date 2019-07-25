@@ -1,9 +1,8 @@
 import React from "react"
-import Paper from "@material-ui/core/Paper"
+import { CardActions, Typography, Paper, Grid, IconButton } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import Checkbox from "@material-ui/core/Checkbox"
+import CheckCircle from "@material-ui/icons/CheckCircle"
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,15 +11,15 @@ const useStyles = makeStyles(theme => ({
     width: 500,
     flexGrow: 1,
     overflow: "hidden",
-    margin: `${theme.spacing(4)}px auto`,
-    padding: theme.spacing(2),
+    margin: `${theme.spacing(1)}px auto`,
+    padding: theme.spacing(0),
   },
   paper: {
     width: 500,
-    margin: theme.spacing(2),
-    padding: theme.spacing(2, 4),
+    margin: theme.spacing(1),
+    padding: theme.spacing(1),
   },
-  checkbox: {
+  button: {
     padding: `${theme.spacing(2)}px auto`,
     margin: `${theme.spacing(2)}px auto`,
   },
@@ -35,17 +34,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const TodoCard = ({onHandleCheck,isChecked,taskString}) => {
+const TodoCard = ({ onHandleClick, taskString }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container wrap="nowrap" spacing={2}>
-          <Checkbox
-            className={classes.checkbox}
-            checked={isChecked}
-            onChange={onHandleCheck}
-          />
+          <CardActions disableSpacing>
+            <IconButton
+              onClick={onHandleClick}
+            >
+              <CheckCircle color="secondary" />
+            </IconButton>
+          </CardActions>
           <Grid item xs>
             <Typography
               variant="body1"
