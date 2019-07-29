@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   onAddClick() {
+    // 文字が入力されているときに，やることリストを追加する
     if (this.state.input) {
       this.setState({
         todoLists: [...this.state.todoLists, this.state.input],
@@ -36,6 +37,7 @@ class App extends Component {
   }
 
   onDeleteTask(todoIndex) {
+    // チェックマークをクリックしたら，spliceで配列から要素を削除
     this.setState({
       tasks: this.state.todoLists.splice(todoIndex, 1),
     })
