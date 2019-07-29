@@ -22,7 +22,6 @@ class App extends Component {
     db.table("todoLists")
       .toArray()
       .then((todoLists) => {
-        console.log("Component Did Mount", todoLists)
         this.setState({ todoLists })
       })
   }
@@ -52,7 +51,6 @@ class App extends Component {
   }
 
   onDeleteTask(id) {
-    console.log("id", id)
     // チェックマークをクリックしたら，spliceで配列から要素を削除
     this.setState({
       tasks: this.state.todoLists.splice(id, 1),
@@ -64,7 +62,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.todoLists)
     const todoCardItems = []
     this.state.todoLists.map(elem => {
       return todoCardItems.push(
