@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   grid: {
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    // direction: "row",
   }
 }))
 
