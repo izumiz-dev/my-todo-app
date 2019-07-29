@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import "./App.css"
-import AppBar from "./components/AppBar"
-import TodoCard from "./components/TodoCard"
-import TodoInputBox from "./components/TodoInputBox"
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import myTheme from "./components/theme/myTheme"
+import db from "./database"
+import { AppBar, TodoCard, TodoInputBox } from "./components/"
+
 class App extends Component {
 
   constructor(props) {
@@ -12,45 +12,66 @@ class App extends Component {
     this.state = {
       input: "",
       todoLists: [],
-      notfication: false
     }
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onDeleteTask = this.onDeleteTask.bind(this)
   }
 
+  componentDidMount() {
+    db.table("todoLists")
+      .toArray()
+      .then((todoLists) => {
+        console.log("Component Did Mount", todoLists)
+        this.setState({ todoLists })
+      })
+  }
+
+
   onAddClick() {
-    // 文字が入力されているときに，やることリストを追加する
     if (this.state.input) {
-      this.setState({
-        todoLists: [...this.state.todoLists, this.state.input],
-        input: ""
+      const todo = {
+        title: this.state.input,
+        // isDone: false
+      }
+      db.table("todoLists").add({ todo }).then(id => {
+        const newTodoList = [...this.state.todoLists, Object.assign({}, { todo }, { id })]
+        this.setState({
+          todoLists: newTodoList,
+          input: ""
+        })
       })
     }
   }
 
-  onInputChange(event) {
+  onInputChange(e) {
     // 文字列入力イベント時に呼ばれる
     this.setState({
-      input: event.target.value
+      input: e.target.value
     })
   }
 
-  onDeleteTask(todoIndex) {
+  onDeleteTask(id) {
+    console.log("id", id)
     // チェックマークをクリックしたら，spliceで配列から要素を削除
     this.setState({
-      tasks: this.state.todoLists.splice(todoIndex, 1),
+      tasks: this.state.todoLists.splice(id, 1),
+    })
+    db.table("todoLists").delete(id).then(() => {
+      const newList = this.state.todoLists.filter(todo => todo.id !== id)
+      this.setState(({ todoLists: newList }))
     })
   }
 
   render() {
+    console.log(this.state.todoLists)
     const todoCardItems = []
-    this.state.todoLists.map((todo, todoIndex) => {
+    this.state.todoLists.map(elem => {
       return todoCardItems.push(
         <TodoCard
-          key={todoIndex}
-          taskString={todo}
-          onHandleClick={() => { this.onDeleteTask(todoIndex) }}
+          key={elem.id}
+          taskString={elem.todo.title}
+          onHandleClick={() => { this.onDeleteTask(elem.id) }}
         />
       )
     })

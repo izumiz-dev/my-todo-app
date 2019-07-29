@@ -8,15 +8,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     alignItems: "center",
-    width: 500,
+    width: "80%",
     flexGrow: 1,
     overflow: "hidden",
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(0),
   },
   paper: {
-    width: 500,
-    margin: theme.spacing(1),
+    width: "80%",
+    margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(1),
   },
   button: {
