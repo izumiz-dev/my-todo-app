@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     alignItems: "center",
-    width: 500,
     margin: `${theme.spacing(4)}px auto`,
+    width: "80%",
     padding: theme.spacing(2),
   },
   input: {
