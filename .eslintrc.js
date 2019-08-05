@@ -3,18 +3,18 @@ module.exports = {
         'browser': true,
         'es6': true
     },
-  'extends': [
-    'eslint:recommended',
-    'plugin:react/recommended'
-  ],
-  'globals': {
+    'extends': [
+        'eslint:recommended',
+        'plugin:react/recommended'
+    ],
+    'globals': {
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
     },
     'parserOptions': {
         'ecmaFeatures': {
-          'jsx': true,
-          'modules': true
+            'jsx': true,
+            'modules': true
         },
         'ecmaVersion': 2018,
         'sourceType': 'module',
@@ -29,23 +29,23 @@ module.exports = {
         ],
         'linebreak-style': [
             'error',
-            'windows'
+            'unix'
         ],
         'quotes': [
             'error',
             'double'
         ],
         'semi': [
-          'error',
-          'never'
+            'error',
+            'never'
         ],
         "max-len": ["error", 80, 2, {
-          ignoreUrls: true,
-        ignoreComments: false,
-        ignoreRegExpLiterals: true,
-        ignoreStrings: true,
-        ignoreTemplateLiterals: true,
-    }],
+            ignoreUrls: true,
+            ignoreComments: false,
+            ignoreRegExpLiterals: true,
+            ignoreStrings: true,
+            ignoreTemplateLiterals: true,
+        }],
         "react/prop-types": 0
     }
 }
