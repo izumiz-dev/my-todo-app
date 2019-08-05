@@ -24,7 +24,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            やることリスト
+            Todo & Memo
           </Typography>
         </Toolbar>
       </AppBar>

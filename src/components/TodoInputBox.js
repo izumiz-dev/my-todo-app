@@ -36,7 +36,7 @@ const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
         id="taskInputBox"
         multiline
         className={classes.input}
-        placeholder="忘れないうちに追加しておこう！"
+        placeholder="Input todo or memo!"
         onChange={onInputChange}
         value={textInput}
       />
