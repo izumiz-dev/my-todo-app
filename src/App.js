@@ -34,7 +34,10 @@ class App extends Component {
         // isDone: false
       }
       db.table("todoLists").add({ todo }).then(id => {
-        const newTodoList = [...this.state.todoLists, Object.assign({}, { todo }, { id })]
+        const newTodoList = [
+          ...this.state.todoLists,
+          Object.assign({}, { todo }, { id })
+        ]
         this.setState({
           todoLists: newTodoList,
           input: ""
