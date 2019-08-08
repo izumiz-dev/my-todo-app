@@ -1,5 +1,5 @@
 {
-  "name": "やることリスト",
+  "name": "TodoApp",
   "short_name": "TodoApp",
   "lang": "ja",
   "start_url": "/my-todo-app",
