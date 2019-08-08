@@ -1,15 +1,21 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Fab from "@material-ui/core/Fab"
-import DoneIcon from "@material-ui/icons/Done"
+import Icon from "@material-ui/icons/Create"
 import Grid from "@material-ui/core/Grid"
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    margin: theme.spacing(4),
+    margin: 0,
+    top: "auto",
+    right: 20,
+    bottom: 20,
+    left: "auto",
+    position: "fixed",
   },
   DoneIcon: {
     marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
   grid: {
     alignItems: "flex-end",
@@ -17,15 +23,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function FloatingActionButtons() {
+const FloatingActionButtons = ({ handleDialogOpen }) => {
   const classes = useStyles()
 
   return (
     <Grid container className={classes.grid}>
-      <Fab color="secondary" variant="extended" aria-label="markAsDone" className={classes.fab}>
-        <DoneIcon className={classes.DoneIcon} />
-        タスク完了！
+      <Fab color="secondary" aria-label="edit" className={classes.fab} onClick={handleDialogOpen}>
+        <Icon />
       </Fab>
     </Grid>
   )
 }
+
+export default FloatingActionButtons
