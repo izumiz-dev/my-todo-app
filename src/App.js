@@ -1,9 +1,10 @@
 import React, { Component } from "react"
+import CssBaseline from "@material-ui/core/CssBaseline"
 import "./App.css"
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import myTheme from "./components/theme/myTheme"
 import db from "./database"
-import { AppBar, TodoCard, TodoInputBox } from "./components/"
+import { AppBar, FloatingButton, FullScreenInput, FunctionalCard } from "./components/"
 
 class App extends Component {
 
@@ -12,10 +13,12 @@ class App extends Component {
     this.state = {
       input: "",
       todoLists: [],
+      dialogOpen: false
     }
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onDeleteTask = this.onDeleteTask.bind(this)
+    this.onHandleDialog = this.onHandleDialog.bind(this)
   }
 
   componentDidMount() {
@@ -40,7 +43,8 @@ class App extends Component {
         ]
         this.setState({
           todoLists: newTodoList,
-          input: ""
+          input: "",
+          dialogOpen: false
         })
       })
     }
@@ -63,30 +67,41 @@ class App extends Component {
       this.setState(({ todoLists: newList }))
     })
   }
-
+  
+  onHandleDialog() {
+    this.setState({
+      dialogOpen: !this.state.dialogOpen
+    })
+  }
+  
   render() {
     const todoCardItems = []
     this.state.todoLists.map(elem => {
       return todoCardItems.push(
-        <TodoCard
+        <FunctionalCard
           key={elem.id}
           taskString={elem.todo.title}
-          onHandleClick={() => { this.onDeleteTask(elem.id) }}
+          handleDoneClick={() => { this.onDeleteTask(elem.id) }}
         />
       )
     })
     return (
       <React.Fragment>
-        <MuiThemeProvider theme={myTheme}>
-          <AppBar />
-          <TodoInputBox
-            onAddClick={this.onAddClick}
-            onInputChange={this.onInputChange}
-            textInput={this.state.input}
-          />
-          {todoCardItems}
-        </MuiThemeProvider>
-      </ React.Fragment>
+        <CssBaseline>
+          <MuiThemeProvider theme={myTheme}>
+            <AppBar />
+            {todoCardItems}
+            <FloatingButton handleDialogOpen={this.onHandleDialog}/>
+            <FullScreenInput
+              handleClose={this.onHandleDialog}
+              isOpen={this.state.dialogOpen}
+              onSaveClick={this.onAddClick}
+              onInputChange={this.onInputChange}
+              textInput={this.state.input}
+            />
+          </MuiThemeProvider>
+        </CssBaseline>
+      </React.Fragment>
     )
   }
 }

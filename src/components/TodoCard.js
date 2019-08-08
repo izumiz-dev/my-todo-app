@@ -1,7 +1,8 @@
 import React from "react"
-import { CardActions, Typography, Paper, Grid, IconButton } from "@material-ui/core"
+import { CardActions, Card, Grid, IconButton } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import CheckCircle from "@material-ui/icons/CheckCircle"
+import MoreVertIcon from "@material-ui/icons/MoreVert"
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +39,7 @@ const TodoCard = ({ onHandleClick, taskString }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
+      <Card className={classes.paper}>
         <Grid container wrap="nowrap" spacing={2}>
           <CardActions disableSpacing>
             <IconButton
@@ -48,14 +49,13 @@ const TodoCard = ({ onHandleClick, taskString }) => {
             </IconButton>
           </CardActions>
           <Grid item xs>
-            <Typography
-              variant="body1"
-              className={classes.typography}>
-              {taskString}
-            </Typography>
+            {taskString}
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
           </Grid>
         </Grid>
-      </Paper>
+      </Card>
     </div>
   )
 }

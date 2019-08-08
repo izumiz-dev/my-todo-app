@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper"
 import InputBase from "@material-ui/core/InputBase"
 import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
-import AddBox from "@material-ui/icons/AddBox"
+import Add from "@material-ui/icons/Add"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +46,7 @@ const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
         className={classes.iconButton}
         aria-label="Directions"
         onClick={onAddClick}>
-        <AddBox />
+        <Add />
       </IconButton>
     </Paper>
   )
