@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Fab from "@material-ui/core/Fab"
-import Icon from "@material-ui/icons/Create"
+import Icon from "@material-ui/icons/Add"
 import Grid from "@material-ui/core/Grid"
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ const FloatingActionButtons = ({ handleDialogOpen }) => {
 
   return (
     <Grid container className={classes.grid}>
-      <Fab color="secondary" aria-label="edit" className={classes.fab} onClick={handleDialogOpen}>
+      <Fab color="secondary" aria-label="add" className={classes.fab} onClick={handleDialogOpen}>
         <Icon />
       </Fab>
     </Grid>

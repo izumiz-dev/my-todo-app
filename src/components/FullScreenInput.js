@@ -9,8 +9,6 @@ import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
 import Slide from "@material-ui/core/Slide"
 import TextField from "@material-ui/core/TextField"
-import Grid from "@material-ui/core/Grid"
-
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -21,15 +19,11 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
   },
   textField: {
-    // margin: `${theme.spacing(4)}px auto`,
-    // padding: theme.spacing(2),
     display: "flex",
     alignItems: "center",
-    width: "80%",
-    flexGrow: 1,
-    overflow: "hidden",
-    margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(0),
+    width: "90%",
+    margin: `${theme.spacing(2)}px auto`,
+    padding: theme.spacing(2),
   }
 }))
 
@@ -50,28 +44,26 @@ const FullScreenDialog = ( {onSaveClick, isOpen, handleClose, onInputChange, tex
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Create new Todo
+              Createing a new memo
             </Typography>
             <Button onClick={onSaveClick}>
               Save
             </Button>
           </Toolbar>
         </AppBar>
-        <Grid item xs>
-          <TextField
-            label="Memo"
-            multiline
-            rows="10"
-            id="todoInputBox"
-            placeholder="Markdown supported!"
-            className={classes.textField}
-            onChange={onInputChange}
-            value={textInput}
-            width="lg"
-            fullWidth
-          />
-        </Grid>
-
+        <TextField
+          variant="outlined"
+          multiline
+          rows="6"
+          rowsMax="30"
+          id="todoInputBox"
+          placeholder="Markdown is supported."
+          className={classes.textField}
+          onChange={onInputChange}
+          value={textInput}
+          fullWidth
+          margin="normal"
+        />
       </Dialog>
     </div>
   )

@@ -4,13 +4,12 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardActions from "@material-ui/core/CardActions"
 import IconButton from "@material-ui/core/IconButton"
-import FavoriteIcon from "@material-ui/icons/Favorite"
+// import FavoriteIcon from "@material-ui/icons/Favorite"
 import Grid from "@material-ui/core/Grid"
 import DoneIcon from "@material-ui/icons/Done"
-import DateRange from "@material-ui/icons/DateRange"
-import unified from "unified"
-import parse from "remark-parse"
-import remark2react from "remark-react"
+// import DateRange from "@material-ui/icons/DateRange"
+// import EditIcon from "@material-ui/icons/Edit"
+import ReactMarkdown from "react-markdown"
 
 
 const useStyles = makeStyles(theme => ({
@@ -44,30 +43,22 @@ const useStyles = makeStyles(theme => ({
 
 const FunctionalCard = ({
   taskString,
-  handleDoneClick
+  handleDoneClick,
+  handleEditClick
 }) => {
   const classes = useStyles()
-
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent className={classes.content}>
-          {/* <ReactMarkdown
-            source={taskString}
-            escapeHtml={false}
-            renderers={renderers}
-          /> */}
-          <div id="preview">
-            {
-              unified()
-                .use(parse)
-                .use(remark2react)
-                .processSync(taskString).contents
-            }
+          <div style = {{ wordWrap:"break-word" }}>
+            <ReactMarkdown
+              source={taskString}
+            />
           </div>
         </CardContent>
         <Grid>
-          <CardActions disableSpacing style={{ padding: "0px"}}>
+          <CardActions disableSpacing style={{ padding: "0px" }}>
             <div className={classes.toolButtons}>
               <IconButton
                 aria-label="todo done"
@@ -75,12 +66,19 @@ const FunctionalCard = ({
               >
                 <DoneIcon />
               </IconButton>
-              <IconButton aria-label="priority">
+              {/* <IconButton aria-label="priority">
                 <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="due datetime">
+              </IconButton> */}
+              {/* <IconButton aria-label="due datetime">
                 <DateRange />
-              </IconButton>
+              </IconButton> */}
+              {/* <IconButton
+                id="editButton"
+                aria-label="Edit"
+                onClick={handleEditClick}
+              >
+                <EditIcon />
+              </IconButton> */}
             </ div>
           </CardActions>
         </Grid>
