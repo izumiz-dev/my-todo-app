@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const FloatingActionButtons = ({ handleDialogOpen }) => {
+const FloatingButton = ({ handleDialogOpen }) => {
   const classes = useStyles()
 
   return (
@@ -35,4 +35,4 @@ const FloatingActionButtons = ({ handleDialogOpen }) => {
   )
 }
 
-export default FloatingActionButtons
+export default FloatingButton
