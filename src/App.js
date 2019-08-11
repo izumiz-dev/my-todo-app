@@ -4,7 +4,10 @@ import "./App.css"
 import { MuiThemeProvider } from "@material-ui/core/styles"
 import myTheme from "./components/theme/myTheme"
 import db from "./database"
-import { AppBar, FloatingButton, FullScreenInput, FunctionalCard } from "./components/"
+import FunctionalCard from "./components/FunctionalCard"
+import AppBar from "./components/AppBar"
+import FloatingButton from "./components/FloatingButton"
+import FullScreenInput from "./components/FullScreenInput"
 
 class App extends Component {
 
@@ -18,6 +21,7 @@ class App extends Component {
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onDeleteTask = this.onDeleteTask.bind(this)
+    this.onEditTask = this.onEditTask.bind(this)
     this.onHandleDialog = this.onHandleDialog.bind(this)
   }
 
@@ -68,6 +72,11 @@ class App extends Component {
     })
   }
   
+  onEditTask(e) {
+    e.preventDefault()
+    console.log(e.target)
+  }
+  
   onHandleDialog() {
     this.setState({
       dialogOpen: !this.state.dialogOpen
@@ -75,22 +84,21 @@ class App extends Component {
   }
   
   render() {
-    const todoCardItems = []
-    this.state.todoLists.map(elem => {
-      return todoCardItems.push(
-        <FunctionalCard
-          key={elem.id}
-          taskString={elem.todo.title}
-          handleDoneClick={() => { this.onDeleteTask(elem.id) }}
-        />
-      )
-    })
+    const {
+      todoLists,
+    } = this.state
     return (
       <React.Fragment>
         <CssBaseline>
           <MuiThemeProvider theme={myTheme}>
             <AppBar />
-            {todoCardItems}
+            {todoLists.map(elem => (
+              <FunctionalCard
+                key={elem.id}
+                taskString={elem.todo.title}
+                handleDoneClick={() => { this.onDeleteTask(elem.id) }}
+                handleEditClick={this.onEditTask}
+              />))}
             <FloatingButton handleDialogOpen={this.onHandleDialog}/>
             <FullScreenInput
               handleClose={this.onHandleDialog}
