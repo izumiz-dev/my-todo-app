@@ -3,11 +3,19 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
+import Link from "@material-ui/core/Link"
 // import InputBase from "@material-ui/core/InputBase"
 import { fade, makeStyles } from "@material-ui/core/styles"
 import MenuIcon from "@material-ui/icons/Menu"
 // import SearchIcon from "@material-ui/icons/Search"
-
+import Drawer from "@material-ui/core/Drawer"
+// import List from "@material-ui/core/List"
+import Divider from "@material-ui/core/Divider"
+// import ListItem from "@material-ui/core/ListItem"
+// import ListItemIcon from "@material-ui/core/ListItemIcon"
+// import ListItemText from "@material-ui/core/ListItemText"
+// import InboxIcon from "@material-ui/icons/AllInbox"
+// import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -60,10 +68,68 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: "auto",
+  },
 }))
 
 const Appbar = () => {
   const classes = useStyles()
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  })
+
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return
+    }
+
+    setState({ ...state, [side]: open })
+  }
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      {/* <List>
+        {["Inbox", "Deleted"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ?
+                <InboxIcon /> : <DeleteOutlineIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List> */}
+      <Divider />
+      <Typography
+        variant="body2"
+        display="block"
+        style={{
+          margin: 0,
+          top: "auto",
+          left: 60,
+          bottom: 30,
+          right: "auto",
+          position: "fixed",
+        }}>
+        DevelopedBy
+        <Link href={"https://twitter.com/polyiz"}>
+          @polyiz
+        </Link>
+      </Typography>
+    </div>
+  )
 
   return (
     <div className={classes.root} style={{ paddingTop: 56 }}>
@@ -74,6 +140,7 @@ const Appbar = () => {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={toggleDrawer("left", true)}
           >
             <MenuIcon />
           </IconButton>
@@ -93,6 +160,9 @@ const Appbar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </div> */}
+          <Drawer open={state.left} onClose={toggleDrawer("left", false)}>
+            {sideList("left")}
+          </Drawer>
         </Toolbar>
       </AppBar>
     </div>

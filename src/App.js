@@ -16,7 +16,8 @@ class App extends Component {
     this.state = {
       input: "",
       todoLists: [],
-      dialogOpen: false
+      dialogOpen: false,
+      editId : false
     }
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
@@ -27,20 +28,32 @@ class App extends Component {
 
   componentDidMount() {
     db.table("todoLists")
+      .where({"isDone": 0})
       .toArray()
       .then((todoLists) => {
         this.setState({ todoLists })
       })
   }
+  
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.editId !== prevState.editId) {
+      db.table("todoLists")
+        .where({"isDone": 0})
+        .toArray()
+        .then((todoLists) => {
+          this.setState({ todoLists })
+        })
+    }
+  }
 
 
   onAddClick() {
-    if (this.state.input) {
+    if (this.state.input && !this.state.editId) {
       const todo = {
         title: this.state.input,
-        // isDone: false
       }
-      db.table("todoLists").add({ todo }).then(id => {
+      db.table("todoLists").add({ todo, isDone: 0 }).then(id => {
         const newTodoList = [
           ...this.state.todoLists,
           Object.assign({}, { todo }, { id })
@@ -52,34 +65,57 @@ class App extends Component {
         })
       })
     }
+    if (this.state.editId) {
+      const updatedTodo = {
+        title: this.state.input
+      }
+      db.table("todoLists").update(this.state.editId, { todo: updatedTodo })
+      const newTodoList = [...this.state.todoLists]
+      this.setState({
+        todoLists: newTodoList,
+        input: "",
+        dialogOpen: false,
+        editId: false
+      })
+    }
+  }
+
+  onEditTask(id) {
+    db.table("todoLists")
+      .where({ id })
+      .toArray()
+      .then(res => {
+        const inputed = res[0].todo.title
+        this.setState({
+          dialogOpen: true,
+          input: inputed,
+          editId: id
+        })
+      })
   }
 
   onInputChange(e) {
-    // 文字列入力イベント時に呼ばれる
     this.setState({
       input: e.target.value
     })
   }
 
   onDeleteTask(id) {
-    // チェックマークをクリックしたら，spliceで配列から要素を削除
     this.setState({
       tasks: this.state.todoLists.splice(id, 1),
     })
-    db.table("todoLists").delete(id).then(() => {
+    db.table("todoLists").update(id, { isDone: 1 }).then(() => {
       const newList = this.state.todoLists.filter(todo => todo.id !== id)
       this.setState(({ todoLists: newList }))
     })
   }
   
-  onEditTask(e) {
-    e.preventDefault()
-    console.log(e.target)
-  }
   
   onHandleDialog() {
     this.setState({
-      dialogOpen: !this.state.dialogOpen
+      dialogOpen: !this.state.dialogOpen,
+      input: "",
+      editId: false
     })
   }
   
@@ -94,11 +130,12 @@ class App extends Component {
             <AppBar />
             {todoLists.map(elem => (
               <FunctionalCard
-                key={elem.id}
+                key={elem.id}                
                 taskString={elem.todo.title}
                 handleDoneClick={() => { this.onDeleteTask(elem.id) }}
-                handleEditClick={this.onEditTask}
-              />))}
+                handleEditClick={() => { this.onEditTask(elem.id) }}
+              />
+            ))}
             <FloatingButton handleDialogOpen={this.onHandleDialog}/>
             <FullScreenInput
               handleClose={this.onHandleDialog}

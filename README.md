@@ -2,19 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # README
 
-## Todo アプリ
+- Memo App
+- Progressive Web App 
 
-### 機能
-
-- 複数行のメモ/Todoを追加できます
-- チェックマークボタンを押すと完了できます
-
-### 目的
-
-- Reactの勉強をする
-
-
-### Todo
-
-- [ ] indexedDBを用いてブラウザにTodoを保存できるようにしたい．
-- [ ] 完了済みのメモ/Todoを別ページで表示する
+https://polyiz.github.io/my-todo-app/
