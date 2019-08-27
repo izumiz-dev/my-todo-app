@@ -32,12 +32,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const FullScreenDialog = ( {onSaveClick, isOpen, handleClose, onInputChange, textInput} ) =>  {
+const FullScreenDialog = ({
+  onSaveClick, isOpen, handleClose, onInputChange, textInput
+}) => {
   const classes = useStyles()
 
   return (
     <div>
-      <Dialog fullScreen open={isOpen} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog
+        fullScreen
+        open={isOpen}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">

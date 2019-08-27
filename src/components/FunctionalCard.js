@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Grid from "@material-ui/core/Grid"
 import DoneIcon from "@material-ui/icons/Done"
 // import DateRange from "@material-ui/icons/DateRange"
-// import EditIcon from "@material-ui/icons/Edit"
+import EditIcon from "@material-ui/icons/Edit"
 import ReactMarkdown from "react-markdown"
 
 
@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
     margin: `${theme.spacing(1)}px auto`,
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(0),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
   },
   toolButtons: {
     paddingBottom: theme.spacing(1),
@@ -72,13 +72,13 @@ const FunctionalCard = ({
               {/* <IconButton aria-label="due datetime">
                 <DateRange />
               </IconButton> */}
-              {/* <IconButton
+              <IconButton
                 id="editButton"
                 aria-label="Edit"
                 onClick={handleEditClick}
               >
                 <EditIcon />
-              </IconButton> */}
+              </IconButton>
             </ div>
           </CardActions>
         </Grid>
