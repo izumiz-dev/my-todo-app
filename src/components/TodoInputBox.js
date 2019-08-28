@@ -12,20 +12,20 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     margin: `${theme.spacing(4)}px auto`,
     width: "85%",
-    padding: theme.spacing(1),
+    padding: theme.spacing(1)
   },
   input: {
     marginLeft: 8,
-    flex: 1,
+    flex: 1
   },
   iconButton: {
-    padding: 10,
+    padding: 10
   },
   divider: {
     width: 1,
     height: 28,
-    margin: 4,
-  },
+    margin: 4
+  }
 }))
 
 const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
@@ -45,7 +45,8 @@ const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
         color="primary"
         className={classes.iconButton}
         aria-label="Directions"
-        onClick={onAddClick}>
+        onClick={onAddClick}
+      >
         <Add />
       </IconButton>
     </Paper>

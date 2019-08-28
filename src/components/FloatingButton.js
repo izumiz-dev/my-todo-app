@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     right: 20,
     bottom: 20,
     left: "auto",
-    position: "fixed",
+    position: "fixed"
   },
   DoneIcon: {
     marginRight: theme.spacing(1),
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   grid: {
     alignItems: "flex-end",
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   }
 }))
 
@@ -28,7 +28,12 @@ const FloatingButton = ({ handleDialogOpen }) => {
 
   return (
     <Grid container className={classes.grid}>
-      <Fab color="secondary" aria-label="add" className={classes.fab} onClick={handleDialogOpen}>
+      <Fab
+        color="secondary"
+        aria-label="add"
+        className={classes.fab}
+        onClick={handleDialogOpen}
+      >
         <Icon />
       </Fab>
     </Grid>

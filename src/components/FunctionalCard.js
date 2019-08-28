@@ -11,7 +11,6 @@ import DoneIcon from "@material-ui/icons/Done"
 import EditIcon from "@material-ui/icons/Edit"
 import ReactMarkdown from "react-markdown"
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -20,51 +19,42 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     overflow: "hidden",
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(1),
+    padding: theme.spacing(1)
   },
   card: {
     width: "100%",
-    margin: `${theme.spacing(1)}px auto`,
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(0),
     paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
   toolButtons: {
     paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    marginLeft: "auto",
+    marginLeft: "auto"
   },
   content: {
-    padding: theme.spacing(2)
-  },
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
+  }
 }))
 
-const FunctionalCard = ({
-  taskString,
-  handleDoneClick,
-  handleEditClick
-}) => {
+const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent className={classes.content}>
-          <div style = {{ wordWrap:"break-word" }}>
-            <ReactMarkdown
-              source={taskString}
-            />
+          <div style={{ wordWrap: "break-word" }}>
+            <ReactMarkdown source={taskString} />
           </div>
         </CardContent>
         <Grid>
           <CardActions disableSpacing style={{ padding: "0px" }}>
             <div className={classes.toolButtons}>
-              <IconButton
-                aria-label="todo done"
-                onClick={handleDoneClick}
-              >
-                <DoneIcon />
+              <IconButton aria-label="todo done" onClick={handleDoneClick}>
+                <DoneIcon fontSize="small" />
               </IconButton>
               {/* <IconButton aria-label="priority">
                 <FavoriteIcon />
@@ -77,12 +67,11 @@ const FunctionalCard = ({
                 aria-label="Edit"
                 onClick={handleEditClick}
               >
-                <EditIcon />
+                <EditIcon fontSize="small" />
               </IconButton>
-            </ div>
+            </div>
           </CardActions>
         </Grid>
-
       </Card>
     </div>
   )

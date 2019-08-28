@@ -12,18 +12,18 @@ import TextField from "@material-ui/core/TextField"
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    position: "relative",
+    position: "relative"
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1,
+    flex: 1
   },
   textField: {
     display: "flex",
     alignItems: "center",
     width: "90%",
     margin: `${theme.spacing(2)}px auto`,
-    padding: theme.spacing(2),
+    padding: theme.spacing(2)
   }
 }))
 
@@ -33,7 +33,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 const FullScreenDialog = ({
-  onSaveClick, isOpen, handleClose, onInputChange, textInput
+  onSaveClick,
+  isOpen,
+  handleClose,
+  onInputChange,
+  textInput
 }) => {
   const classes = useStyles()
 
@@ -47,22 +51,25 @@ const FullScreenDialog = ({
       >
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Createing a new memo
+              Edit Memo
             </Typography>
-            <Button onClick={onSaveClick}>
-              Save
-            </Button>
+            <Button onClick={onSaveClick}>Save</Button>
           </Toolbar>
         </AppBar>
         <TextField
           variant="outlined"
           multiline
-          rows="6"
-          rowsMax="30"
+          rows="10"
+          rowsMax="40"
           id="todoInputBox"
           placeholder="Markdown is supported."
           className={classes.textField}
@@ -75,6 +82,5 @@ const FullScreenDialog = ({
     </div>
   )
 }
-
 
 export default FullScreenDialog
