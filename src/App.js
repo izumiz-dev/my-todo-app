@@ -10,14 +10,13 @@ import FloatingButton from "./components/FloatingButton"
 import FullScreenInput from "./components/FullScreenInput"
 
 class App extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
       input: "",
       todoLists: [],
       dialogOpen: false,
-      editId : false
+      editId: false
     }
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
@@ -28,42 +27,42 @@ class App extends Component {
 
   componentDidMount() {
     db.table("todoLists")
-      .where({"isDone": 0})
+      .where({ isDone: 0 })
       .toArray()
-      .then((todoLists) => {
+      .then(todoLists => {
         this.setState({ todoLists })
       })
   }
-  
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.editId !== prevState.editId) {
       db.table("todoLists")
-        .where({"isDone": 0})
+        .where({ isDone: 0 })
         .toArray()
-        .then((todoLists) => {
+        .then(todoLists => {
           this.setState({ todoLists })
         })
     }
   }
 
-
   onAddClick() {
     if (this.state.input && !this.state.editId) {
       const todo = {
-        title: this.state.input,
+        title: this.state.input
       }
-      db.table("todoLists").add({ todo, isDone: 0 }).then(id => {
-        const newTodoList = [
-          ...this.state.todoLists,
-          Object.assign({}, { todo }, { id })
-        ]
-        this.setState({
-          todoLists: newTodoList,
-          input: "",
-          dialogOpen: false
+      db.table("todoLists")
+        .add({ todo, isDone: 0 })
+        .then(id => {
+          const newTodoList = [
+            ...this.state.todoLists,
+            Object.assign({}, { todo }, { id })
+          ]
+          this.setState({
+            todoLists: newTodoList,
+            input: "",
+            dialogOpen: false
+          })
         })
-      })
     }
     if (this.state.editId) {
       const updatedTodo = {
@@ -102,15 +101,16 @@ class App extends Component {
 
   onDeleteTask(id) {
     this.setState({
-      tasks: this.state.todoLists.splice(id, 1),
+      tasks: this.state.todoLists.splice(id, 1)
     })
-    db.table("todoLists").update(id, { isDone: 1 }).then(() => {
-      const newList = this.state.todoLists.filter(todo => todo.id !== id)
-      this.setState(({ todoLists: newList }))
-    })
+    db.table("todoLists")
+      .update(id, { isDone: 1 })
+      .then(() => {
+        const newList = this.state.todoLists.filter(todo => todo.id !== id)
+        this.setState({ todoLists: newList })
+      })
   }
-  
-  
+
   onHandleDialog() {
     this.setState({
       dialogOpen: !this.state.dialogOpen,
@@ -118,11 +118,9 @@ class App extends Component {
       editId: false
     })
   }
-  
+
   render() {
-    const {
-      todoLists,
-    } = this.state
+    const { todoLists } = this.state
     return (
       <React.Fragment>
         <CssBaseline>
@@ -130,13 +128,17 @@ class App extends Component {
             <AppBar />
             {todoLists.map(elem => (
               <FunctionalCard
-                key={elem.id}                
+                key={elem.id}
                 taskString={elem.todo.title}
-                handleDoneClick={() => { this.onDeleteTask(elem.id) }}
-                handleEditClick={() => { this.onEditTask(elem.id) }}
+                handleDoneClick={() => {
+                  this.onDeleteTask(elem.id)
+                }}
+                handleEditClick={() => {
+                  this.onEditTask(elem.id)
+                }}
               />
             ))}
-            <FloatingButton handleDialogOpen={this.onHandleDialog}/>
+            <FloatingButton handleDialogOpen={this.onHandleDialog} />
             <FullScreenInput
               handleClose={this.onHandleDialog}
               isOpen={this.state.dialogOpen}
