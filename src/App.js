@@ -8,6 +8,7 @@ import FunctionalCard from "./components/FunctionalCard"
 import AppBar from "./components/AppBar"
 import FloatingButton from "./components/FloatingButton"
 import FullScreenInput from "./components/FullScreenInput"
+import TodoInputBox from "./components/TodoInputBox.js"
 
 class App extends Component {
   constructor(props) {
@@ -126,6 +127,11 @@ class App extends Component {
         <CssBaseline>
           <MuiThemeProvider theme={myTheme}>
             <AppBar />
+            <TodoInputBox
+              onAddClick={this.onAddClick}
+              onInputChange={this.onInputChange}
+              textInput={this.state.input}
+            />
             {todoLists.map(elem => (
               <FunctionalCard
                 key={elem.id}

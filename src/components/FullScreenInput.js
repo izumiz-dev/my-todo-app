@@ -60,7 +60,7 @@ const FullScreenDialog = ({
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Createing a new memo
+              Edit Memo
             </Typography>
             <Button onClick={onSaveClick}>Save</Button>
           </Toolbar>
@@ -68,8 +68,8 @@ const FullScreenDialog = ({
         <TextField
           variant="outlined"
           multiline
-          rows="6"
-          rowsMax="30"
+          rows="10"
+          rowsMax="40"
           id="todoInputBox"
           placeholder="Markdown is supported."
           className={classes.textField}

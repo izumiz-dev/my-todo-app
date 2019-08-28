@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     width: "100%",
-    margin: `${theme.spacing(1)}px auto`,
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(0),
     paddingLeft: theme.spacing(1),
@@ -31,12 +30,13 @@ const useStyles = makeStyles(theme => ({
   },
   toolButtons: {
     paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
     marginLeft: "auto"
   },
   content: {
-    padding: theme.spacing(2)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   }
 }))
 
@@ -54,7 +54,7 @@ const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
           <CardActions disableSpacing style={{ padding: "0px" }}>
             <div className={classes.toolButtons}>
               <IconButton aria-label="todo done" onClick={handleDoneClick}>
-                <DoneIcon />
+                <DoneIcon fontSize="small" />
               </IconButton>
               {/* <IconButton aria-label="priority">
                 <FavoriteIcon />
@@ -67,7 +67,7 @@ const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
                 aria-label="Edit"
                 onClick={handleEditClick}
               >
-                <EditIcon />
+                <EditIcon fontSize="small" />
               </IconButton>
             </div>
           </CardActions>
