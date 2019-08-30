@@ -11,6 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 import Drawer from "@material-ui/core/Drawer"
 // import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
+import InvertColorsIcon from "@material-ui/icons/InvertColors"
 // import ListItem from "@material-ui/core/ListItem"
 // import ListItemIcon from "@material-ui/core/ListItemIcon"
 // import ListItemText from "@material-ui/core/ListItemText"
@@ -76,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Appbar = () => {
+const Appbar = ({handleChangeTheme}) => {
   const classes = useStyles()
   const [state, setState] = React.useState({
     top: false,
@@ -149,6 +150,12 @@ const Appbar = () => {
           <Typography className={classes.title} variant="h6">
             Todo Memo
           </Typography>
+          <IconButton
+            color="inherit"
+            onClick={handleChangeTheme}
+          >
+            <InvertColorsIcon />
+          </IconButton>
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

@@ -17,13 +17,15 @@ class App extends Component {
       input: "",
       todoLists: [],
       dialogOpen: false,
-      editId: false
+      editId: false,
+      theme: "light"
     }
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onDeleteTask = this.onDeleteTask.bind(this)
     this.onEditTask = this.onEditTask.bind(this)
     this.onHandleDialog = this.onHandleDialog.bind(this)
+    this.onChangeTheme = this.onChangeTheme.bind(this)
   }
 
   componentDidMount() {
@@ -120,13 +122,27 @@ class App extends Component {
     })
   }
 
+  onChangeTheme() {
+    let retTheme
+    if (this.state.theme === "light") {
+      retTheme = "dark"
+    } else {
+      retTheme = "light"
+    }
+    this.setState({
+      theme: retTheme
+    })
+  }
+
   render() {
-    const { todoLists } = this.state
+    const { todoLists, theme } = this.state
     return (
       <React.Fragment>
-        <CssBaseline>
-          <MuiThemeProvider theme={myTheme}>
-            <AppBar />
+        <MuiThemeProvider theme={myTheme(theme)}>
+          <CssBaseline>
+            <AppBar
+              handleChangeTheme={this.onChangeTheme}
+            />
             <TodoInputBox
               onAddClick={this.onAddClick}
               onInputChange={this.onInputChange}
@@ -152,8 +168,8 @@ class App extends Component {
               onInputChange={this.onInputChange}
               textInput={this.state.input}
             />
-          </MuiThemeProvider>
-        </CssBaseline>
+          </CssBaseline>
+        </MuiThemeProvider>
       </React.Fragment>
     )
   }
