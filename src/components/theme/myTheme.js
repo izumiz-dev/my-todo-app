@@ -4,10 +4,10 @@ const myTheme = theme => {
   return createMuiTheme({
     palette: {
       primary: {
-        main: "#4fc3f7"
+        main: "#01579b"
       },
       secondary: {
-        main: "#f06292"
+        main: "#880e4f"
       },
       type: theme
     }

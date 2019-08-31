@@ -4,14 +4,14 @@ import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import Link from "@material-ui/core/Link"
-// import InputBase from "@material-ui/core/InputBase"
+import Divider from "@material-ui/core/Divider"
 import { fade, makeStyles } from "@material-ui/core/styles"
 import MenuIcon from "@material-ui/icons/Menu"
-// import SearchIcon from "@material-ui/icons/Search"
 import Drawer from "@material-ui/core/Drawer"
+// import InputBase from "@material-ui/core/InputBase"
+// import SearchIcon from "@material-ui/icons/Search"
 // import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
-import InvertColorsIcon from "@material-ui/icons/InvertColors"
+// import InvertColorsIcon from "@material-ui/icons/InvertColors"
 // import ListItem from "@material-ui/core/ListItem"
 // import ListItemIcon from "@material-ui/core/ListItemIcon"
 // import ListItemText from "@material-ui/core/ListItemText"
@@ -77,7 +77,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Appbar = ({handleChangeTheme}) => {
+// ({handleChangeTheme})
+const Appbar = () => {
   const classes = useStyles()
   const [state, setState] = React.useState({
     top: false,
@@ -150,12 +151,12 @@ const Appbar = ({handleChangeTheme}) => {
           <Typography className={classes.title} variant="h6">
             Todo Memo
           </Typography>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             onClick={handleChangeTheme}
           >
             <InvertColorsIcon />
-          </IconButton>
+          </IconButton> */}
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
