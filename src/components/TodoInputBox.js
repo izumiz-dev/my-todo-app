@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper"
 import InputBase from "@material-ui/core/InputBase"
 import Divider from "@material-ui/core/Divider"
 import IconButton from "@material-ui/core/IconButton"
-import Add from "@material-ui/icons/AddBox"
+import Add from "@material-ui/icons/NoteAdd"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,13 +36,13 @@ const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
         id="taskInputBox"
         multiline
         className={classes.input}
-        placeholder="Input todo or memo!"
+        placeholder="Markdown is supported."
         onChange={onInputChange}
         value={textInput}
       />
       <Divider className={classes.divider} />
       <IconButton
-        color="primary"
+        color="inherit"
         className={classes.iconButton}
         aria-label="Directions"
         onClick={onAddClick}

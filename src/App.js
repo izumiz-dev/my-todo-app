@@ -1,8 +1,5 @@
 import React, { Component } from "react"
-import CssBaseline from "@material-ui/core/CssBaseline"
 import "./App.css"
-import { MuiThemeProvider } from "@material-ui/core/styles"
-import myTheme from "./components/theme/myTheme"
 import db from "./database"
 import FunctionalCard from "./components/FunctionalCard"
 import AppBar from "./components/AppBar"
@@ -29,7 +26,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    db.table("todoLists")
+    db.table("newLists")
       .where({ isDone: 0 })
       .toArray()
       .then(todoLists => {
@@ -39,7 +36,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.editId !== prevState.editId) {
-      db.table("todoLists")
+      db.table("newLists")
         .where({ isDone: 0 })
         .toArray()
         .then(todoLists => {
@@ -53,7 +50,7 @@ class App extends Component {
       const todo = {
         title: this.state.input
       }
-      db.table("todoLists")
+      db.table("newLists")
         .add({ todo, isDone: 0 })
         .then(id => {
           const newTodoList = [
@@ -71,7 +68,7 @@ class App extends Component {
       const updatedTodo = {
         title: this.state.input
       }
-      db.table("todoLists").update(this.state.editId, { todo: updatedTodo })
+      db.table("newLists").update(this.state.editId, { todo: updatedTodo })
       const newTodoList = [...this.state.todoLists]
       this.setState({
         todoLists: newTodoList,
@@ -83,7 +80,7 @@ class App extends Component {
   }
 
   onEditTask(id) {
-    db.table("todoLists")
+    db.table("newLists")
       .where({ id })
       .toArray()
       .then(res => {
@@ -106,7 +103,7 @@ class App extends Component {
     this.setState({
       tasks: this.state.todoLists.splice(id, 1)
     })
-    db.table("todoLists")
+    db.table("newLists")
       .update(id, { isDone: 1 })
       .then(() => {
         const newList = this.state.todoLists.filter(todo => todo.id !== id)
@@ -135,41 +132,35 @@ class App extends Component {
   }
 
   render() {
-    const { todoLists, theme } = this.state
+    const { todoLists, input } = this.state
     return (
       <React.Fragment>
-        <MuiThemeProvider theme={myTheme(theme)}>
-          <CssBaseline>
-            <AppBar
-              handleChangeTheme={this.onChangeTheme}
-            />
-            <TodoInputBox
-              onAddClick={this.onAddClick}
-              onInputChange={this.onInputChange}
-              textInput={this.state.input}
-            />
-            {todoLists.map(elem => (
-              <FunctionalCard
-                key={elem.id}
-                taskString={elem.todo.title}
-                handleDoneClick={() => {
-                  this.onDeleteTask(elem.id)
-                }}
-                handleEditClick={() => {
-                  this.onEditTask(elem.id)
-                }}
-              />
-            ))}
-            <FloatingButton handleDialogOpen={this.onHandleDialog} />
-            <FullScreenInput
-              handleClose={this.onHandleDialog}
-              isOpen={this.state.dialogOpen}
-              onSaveClick={this.onAddClick}
-              onInputChange={this.onInputChange}
-              textInput={this.state.input}
-            />
-          </CssBaseline>
-        </MuiThemeProvider>
+        <AppBar/>
+        <TodoInputBox
+          onAddClick={this.onAddClick}
+          onInputChange={this.onInputChange}
+          textInput={input}
+        />
+        {todoLists.map(elem => (
+          <FunctionalCard
+            key={elem.id}
+            taskString={elem.todo.title}
+            handleDoneClick={() => {
+              this.onDeleteTask(elem.id)
+            }}
+            handleEditClick={() => {
+              this.onEditTask(elem.id)
+            }}
+          />
+        ))}
+        <FloatingButton handleDialogOpen={this.onHandleDialog} />
+        <FullScreenInput
+          handleClose={this.onHandleDialog}
+          isOpen={this.state.dialogOpen}
+          onSaveClick={this.onAddClick}
+          onInputChange={this.onInputChange}
+          textInput={input}
+        />
       </React.Fragment>
     )
   }
