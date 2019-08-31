@@ -1,7 +1,7 @@
 {
   "name": "MemoApp",
   "short_name": "MemoApp",
-  "lang": "ja",
+  "lang": "ja-JP",
   "start_url": "/my-todo-app",
   "display": "standalone",
   "theme_color": "#4fc3f7",
