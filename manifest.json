@@ -4,8 +4,8 @@
   "lang": "ja-JP",
   "start_url": "/my-todo-app",
   "display": "standalone",
-  "theme_color": "#4fc3f7",
-  "background_color": "#4fc3f7",
+  "theme_color": "#01579b",
+  "background_color": "#01579b",
   "icons": [
     {
       "src": "images/icons/icon-192x192.png",
