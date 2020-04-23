@@ -2,7 +2,7 @@
   "name": "my-todo-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://polyiz.github.io/my-todo-app",
+  "homepage": "http://izumiz-dev.github.io/my-todo-app",
   "dependencies": {
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.2.1",

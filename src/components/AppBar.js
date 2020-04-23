@@ -130,7 +130,7 @@ const Appbar = () => {
         }}
       >
         DevelopedBy
-        <Link href={"https://twitter.com/polyiz"}>@polyiz</Link>
+        <Link href={"https://github.com/izumiz-dev"}>@izumiz-dev</Link>
       </Typography>
     </div>
   )
