@@ -1,14 +1,16 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import Dialog from "@material-ui/core/Dialog"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import IconButton from "@material-ui/core/IconButton"
-import Typography from "@material-ui/core/Typography"
-import CloseIcon from "@material-ui/icons/Close"
-import Slide from "@material-ui/core/Slide"
-import TextField from "@material-ui/core/TextField"
 import SaveIcon from "@material-ui/icons/Save"
+import CloseIcon from "@material-ui/icons/Close"
+import {
+  Dialog,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Slide,
+  TextField
+} from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -62,11 +64,8 @@ const FullScreenDialog = ({
             <Typography variant="h6" className={classes.title}>
               Edit Memo
             </Typography>
-            <IconButton
-              color="inherit"
-              onClick={onSaveClick}
-            >
-              <SaveIcon/>
+            <IconButton color="inherit" onClick={onSaveClick}>
+              <SaveIcon />
             </IconButton>
           </Toolbar>
         </AppBar>

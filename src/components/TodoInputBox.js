@@ -1,10 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import Paper from "@material-ui/core/Paper"
-import InputBase from "@material-ui/core/InputBase"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import Add from "@material-ui/icons/NoteAdd"
+import { Paper, InputBase, Divider, IconButton } from "@material-ui/core"
+import Add from "@material-ui/icons/PostAdd"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +33,7 @@ const TodoInputBox = ({ onAddClick, onInputChange, textInput }) => {
         id="taskInputBox"
         multiline
         className={classes.input}
-        placeholder="Markdown is supported."
+        placeholder="Ctrl(Cmd)+Enter でメモの作成"
         onChange={onInputChange}
         value={textInput}
       />
