@@ -1,14 +1,22 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card"
-import CardContent from "@material-ui/core/CardContent"
-import CardActions from "@material-ui/core/CardActions"
-import IconButton from "@material-ui/core/IconButton"
-// import FavoriteIcon from "@material-ui/icons/Favorite"
-import Grid from "@material-ui/core/Grid"
+import {
+  Card,
+  CardContent,
+  CardActions,
+  IconButton,
+  Grid,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  FormControl,
+  Button,
+  TextField
+} from "@material-ui/core"
 import DoneIcon from "@material-ui/icons/Done"
-// import DateRange from "@material-ui/icons/DateRange"
 import EditIcon from "@material-ui/icons/Edit"
+// import DateRange from "@material-ui/icons/DateRange"
 import ReactMarkdown from "react-markdown"
 
 const useStyles = makeStyles(theme => ({
@@ -40,7 +48,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
+const FunctionalCard = ({
+  taskString,
+  editDueTime,
+  taskId,
+  handleDoneClick,
+  handleEditClick,
+  handleSetDueTime,
+  handleEditDueTime
+}) => {
+  console.log(editDueTime, taskId, "a")
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -53,15 +70,6 @@ const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
         <Grid>
           <CardActions disableSpacing style={{ padding: "0px" }}>
             <div className={classes.toolButtons}>
-              <IconButton aria-label="todo done" onClick={handleDoneClick}>
-                <DoneIcon fontSize="small" />
-              </IconButton>
-              {/* <IconButton aria-label="priority">
-                <FavoriteIcon />
-              </IconButton> */}
-              {/* <IconButton aria-label="due datetime">
-                <DateRange />
-              </IconButton> */}
               <IconButton
                 id="editButton"
                 aria-label="Edit"
@@ -69,6 +77,59 @@ const FunctionalCard = ({ taskString, handleDoneClick, handleEditClick }) => {
               >
                 <EditIcon fontSize="small" />
               </IconButton>
+              {/*
+                TODO: Due Dateのフロント実装未完了
+               */}
+              {/*
+                <IconButton aria-label="due datetime" onClick={handleEditDueTime}>
+                  <DateRange />
+                </IconButton>
+              */}
+
+              {editDueTime === taskId ? (
+                <Dialog
+                  disableBackdropClick
+                  disableEscapeKeyDown
+                  open
+                  onClose={handleEditDueTime}
+                >
+                  <DialogTitle>Select DueTime</DialogTitle>
+                  <DialogContent>
+                    <FormControl className={classes.formControl}>
+                      <form className={classes.container}>
+                        <TextField
+                          id="datetime-local"
+                          type="datetime-local"
+                          className={classes.textField}
+                          InputLabelProps={{
+                            shrink: true
+                          }}
+                        />
+                      </form>
+                    </FormControl>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={() => {
+                        handleEditDueTime("close")
+                      }}
+                      color="primary"
+                    >
+                      Cancel
+                    </Button>
+                    <Button onClick={() => 1} color="primary">
+                      Ok
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              ) : null}
+
+              <IconButton aria-label="todo done" onClick={handleDoneClick}>
+                <DoneIcon fontSize="small" />
+              </IconButton>
+              {/* <IconButton aria-label="priority">
+                <FavoriteIcon />
+              </IconButton> */}
             </div>
           </CardActions>
         </Grid>

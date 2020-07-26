@@ -15,14 +15,29 @@ class App extends Component {
       todoLists: [],
       dialogOpen: false,
       editId: false,
-      theme: "light"
+      theme: "light",
+      editDueTime: false
     }
+    this.keydownHandler = this.keydownHandler.bind(this)
+    this.onEditDueDate = this.onEditDueDate.bind(this)
+    this.onSetDueTime = this.onSetDueTime.bind(this)
     this.onAddClick = this.onAddClick.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onDeleteTask = this.onDeleteTask.bind(this)
     this.onEditTask = this.onEditTask.bind(this)
     this.onHandleDialog = this.onHandleDialog.bind(this)
     this.onChangeTheme = this.onChangeTheme.bind(this)
+  }
+
+  keydownHandler(e) {
+    if (e.keyCode === 13) {
+      if (e.metaKey) {
+        this.onAddClick()
+      }
+      if (e.ctrlKey) {
+        this.onAddClick()
+      }
+    }
   }
 
   componentDidMount() {
@@ -32,6 +47,11 @@ class App extends Component {
       .then(todoLists => {
         this.setState({ todoLists })
       })
+    document.addEventListener("keydown", this.keydownHandler)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.keydownHandler)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -131,11 +151,21 @@ class App extends Component {
     })
   }
 
+  onSetDueTime(id) {
+    console.log(id)
+  }
+
+  onEditDueDate(id) {
+    this.setState({
+      editDueTime: id
+    })
+  }
+
   render() {
-    const { todoLists, input } = this.state
+    const { todoLists, input, editDueTime } = this.state
     return (
       <React.Fragment>
-        <AppBar/>
+        <AppBar />
         <TodoInputBox
           onAddClick={this.onAddClick}
           onInputChange={this.onInputChange}
@@ -144,12 +174,20 @@ class App extends Component {
         {todoLists.map(elem => (
           <FunctionalCard
             key={elem.id}
+            taskId={elem.id}
             taskString={elem.todo.title}
+            editDueTime={editDueTime}
             handleDoneClick={() => {
               this.onDeleteTask(elem.id)
             }}
             handleEditClick={() => {
               this.onEditTask(elem.id)
+            }}
+            handleDateTime={() => {
+              this.onSetDueTime(elem.id)
+            }}
+            handleEditDueTime={() => {
+              this.onEditDueDate(elem.id)
             }}
           />
         ))}
