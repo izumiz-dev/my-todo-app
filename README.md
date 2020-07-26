@@ -3,6 +3,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # README
 
 - Memo App
-- Progressive Web App 
+- Progressive Web App
 
-https://polyiz.github.io/my-todo-app/
+https://izumiz-dev.github.io/my-todo-app/

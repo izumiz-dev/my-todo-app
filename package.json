@@ -2,7 +2,7 @@
   "name": "my-todo-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://polyiz.github.io/my-todo-app",
+  "homepage": "http://izumiz-dev.github.io/my-todo-app",
   "dependencies": {
     "@babel/helper-call-delegate": "^7.10.4",
     "@material-ui/icons": "^4.2.1",
