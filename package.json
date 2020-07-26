@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://polyiz.github.io/my-todo-app",
   "dependencies": {
+    "@babel/helper-call-delegate": "^7.10.4",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.2.1",
     "dexie": "^2.0.4",
